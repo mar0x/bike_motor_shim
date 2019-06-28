@@ -52,10 +52,11 @@ struct {
     }
 
     void on_change() {
-        new_state = sensor_in().read();
     }
 
     void update(unsigned long t) {
+        new_state = sensor_in().read();
+
         if (new_state == state) {
             return;
         }
@@ -67,7 +68,12 @@ struct {
 
             on_ms = t;
         } else {
-            pulse_ms = t - on_ms;
+            if (t - on_ms > pulse_ms) {
+                pulse_ms = t - on_ms;
+            }
+            if (pulse_ms == 0) {
+                pulse_ms = 1;
+            }
         }
     }
 } sensor;
@@ -84,12 +90,12 @@ struct {
     }
 
     void update(unsigned long t) {
-        if (!state && sensor.pulse && t - on_ms >= min_period_ms) {
+        if (!state && (sensor.state || (sensor.pulse && sensor.pulse_ms)) && t - on_ms >= min_period_ms) {
             on(t);
             sensor.pulse = false;
         }
 
-        if (state && sensor.pulse_ms > 0 && t - on_ms >= sensor.pulse_ms) {
+        if (state && sensor.pulse_ms && t - on_ms >= sensor.pulse_ms) {
             off();
             sensor.pulse_ms = 0;
         }
