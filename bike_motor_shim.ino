@@ -3,6 +3,7 @@
 #include "artl/digital_out.h"
 #include "artl/pin_change_int.h"
 #include "artl/yield.h"
+#include "artl/button.h"
 
 
 #if defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
@@ -38,8 +39,9 @@ struct {
     unsigned long pulse_ms = 0;
 
     bool state = false;
-    bool new_state = false;
     bool pulse = false;
+
+    artl::button<> debouncer;
 
     void setup() {
         sensor_in().setup();
@@ -47,16 +49,17 @@ struct {
 
         sensor_out().setup();
         sensor_out().high();
-
-        on_change();
     }
 
     void on_change() {
     }
 
     void update(unsigned long t) {
-        new_state = sensor_in().read();
+        if (!debouncer.update(sensor_in().read(), t)) {
+            return;
+        }
 
+        bool new_state = debouncer.down();
         if (new_state == state) {
             return;
         }
