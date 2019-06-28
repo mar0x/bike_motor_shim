@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:bike_motor_shim-cache
 EELAYER 26 0
 EELAYER END
 $Descr A4 11693 8268
@@ -118,7 +119,7 @@ U 1 1 5CFFE000
 P 5750 3900
 F 0 "K1" H 6080 3946 50  0000 L CNN
 F 1 "MSxx-1Axx-75" H 6080 3855 50  0000 L CNN
-F 2 "Relay_THT:Relay_SPST_StandexMeder_MS_Form1AB" H 6100 3850 50  0001 L CNN
+F 2 "Relay_THT:Relay_SPST_StandexMeder_SIL_Form1A" H 6100 3850 50  0001 L CNN
 F 3 "https://standexelectronics.com/de/produkte/ms-reed-relais/" H 5750 3900 50  0001 C CNN
 	1    5750 3900
 	1    0    0    -1  

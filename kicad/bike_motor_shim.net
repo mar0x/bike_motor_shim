@@ -1,7 +1,7 @@
 (export (version D)
   (design
-    (source /Volumes/data/home/max_romanov/Documents/Arduino/bike_motor_shim/bike_motor_shim/bike_motor_shim.sch)
-    (date "2019 June 13, Thursday 09:38:22")
+    (source /Volumes/data/home/max_romanov/Documents/Arduino/bike_motor_shim/kicad/bike_motor_shim.sch)
+    (date "2019 June 28, Friday 16:22:59")
     (tool "Eeschema (5.0.2-5)-5")
     (sheet (number 1) (name /) (tstamps /)
       (title_block
@@ -80,7 +80,7 @@
       (tstamp 5CFFDB4E))
     (comp (ref K1)
       (value MSxx-1Axx-75)
-      (footprint Relay_THT:Relay_SPST_StandexMeder_MS_Form1AB)
+      (footprint Relay_THT:Relay_SPST_StandexMeder_SIL_Form1A)
       (datasheet https://standexelectronics.com/de/produkte/ms-reed-relais/)
       (libsource (lib Relay) (part MSxx-1Axx-75) (description "Standex Meder MS reed relay, SPST, Closing Contact"))
       (sheetpath (names /) (tstamps /))
