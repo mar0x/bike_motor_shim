@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name shimano)(type KiCad)(uri ${KIPRJMOD}/shimano.pretty)(options "")(descr ""))
+  (lib (name trr-relay)(type KiCad)(uri ${KIPRJMOD}/trr-relay.pretty)(options "")(descr ""))
 )
