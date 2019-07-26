@@ -1,6 +1,7 @@
 
 #include "artl/digital_in.h"
 #include "artl/digital_out.h"
+#include "artl/digital_pin.h"
 #include "artl/pin_change_int.h"
 #include "artl/yield.h"
 #include "artl/button.h"
@@ -8,12 +9,12 @@
 
 #if defined(__AVR_ATtiny25__) || defined(__AVR_ATtiny45__) || defined(__AVR_ATtiny85__)
 #define SENSOR_IN_PIN   1
-#define SENSOR_OUT_PIN  0
+#define TTL_OUT_PIN     0
 #define RELAY_OUT_PIN   2
 #else
 #define HAVE_HWSERIAL
 #define SENSOR_IN_PIN   10
-#define SENSOR_OUT_PIN  8
+#define TTL_OUT_PIN     8
 #define RELAY_OUT_PIN   9
 #endif
 
@@ -33,7 +34,6 @@ const unsigned long min_period_ms = (unsigned long) MIN_PULSE_PERIOD_MS;
 struct {
     using sensor_in = artl::digital_in<SENSOR_IN_PIN>;
     using sensor_int = artl::pin_change_int<sensor_in::pin>;
-    using sensor_out = artl::digital_out<SENSOR_OUT_PIN>;
 
     unsigned long on_ms = 0;
     unsigned long pulse_ms = 0;
@@ -46,16 +46,13 @@ struct {
     void setup() {
         sensor_in().setup();
         sensor_int().enable();
-
-        sensor_out().setup();
-        sensor_out().high();
     }
 
     void on_change() {
     }
 
     void update(unsigned long t) {
-        if (!debouncer.update(sensor_in().read(), t)) {
+        if (!debouncer.update(!sensor_in().read(), t)) {
             return;
         }
 
@@ -83,6 +80,7 @@ struct {
 
 struct {
     using relay_out = artl::digital_out<RELAY_OUT_PIN>;
+    using ttl_out = artl::digital_pin<TTL_OUT_PIN>;
 
     unsigned long on_ms = 0;
 
@@ -90,6 +88,8 @@ struct {
 
     void setup() {
         relay_out().setup();
+
+        ttl_out().input();
     }
 
     void update(unsigned long t) {
@@ -107,12 +107,17 @@ struct {
     void on(unsigned long t) {
         relay_out().high();
 
+        ttl_out().output();
+        ttl_out().low();
+
         state = true;
         on_ms = t;
     }
 
     void off() {
         relay_out().low();
+
+        ttl_out().input();
 
         state = false;
     }
@@ -134,7 +139,7 @@ void setup() {
     sensor.setup();
     relay.setup();
 
-    artl::yield();
+//    artl::yield();
 }
 
 void loop() {
@@ -143,5 +148,5 @@ void loop() {
     sensor.update(t);
     relay.update(t);
 
-    artl::yield();
+//    artl::yield();
 }
