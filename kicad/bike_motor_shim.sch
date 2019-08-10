@@ -50,13 +50,13 @@ $EndComp
 $Comp
 L Device:D D1
 U 1 1 5CFFD5FF
-P 5750 4300
-F 0 "D1" H 5650 4200 50  0000 L CNN
-F 1 "D" H 5800 4200 50  0000 L CNN
-F 2 "Diode_SMD:D_SMA_Handsoldering" H 5750 4300 50  0001 C CNN
-F 3 "~" H 5750 4300 50  0001 C CNN
-	1    5750 4300
-	-1   0    0    1   
+P 5750 4500
+F 0 "D1" H 5650 4400 50  0000 L CNN
+F 1 "D" H 5800 4400 50  0000 L CNN
+F 2 "Diode_SMD:D_SMA" H 5750 4500 50  0001 C CNN
+F 3 "~" H 5750 4500 50  0001 C CNN
+	1    5750 4500
+	0    1    1    0   
 $EndComp
 $Comp
 L Device:R R1
@@ -105,24 +105,24 @@ $EndComp
 $Comp
 L Device:R R3
 U 1 1 5CFFDB4E
-P 6200 4650
-F 0 "R3" V 6000 4600 50  0000 L CNN
-F 1 "220" V 6100 4600 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 6130 4650 50  0001 C CNN
-F 3 "~" H 6200 4650 50  0001 C CNN
-	1    6200 4650
+P 5650 5000
+F 0 "R3" V 5450 4950 50  0000 L CNN
+F 1 "220" V 5550 4950 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5580 5000 50  0001 C CNN
+F 3 "~" H 5650 5000 50  0001 C CNN
+	1    5650 5000
 	0    1    1    0   
 $EndComp
 $Comp
 L Relay:MSxx-1Axx-75 K1
 U 1 1 5CFFE000
-P 5750 4850
-F 0 "K1" V 6100 4800 50  0000 L CNN
-F 1 "MSxx-1Axx-75" V 6200 4600 50  0000 L CNN
-F 2 "Relay_THT:Relay_SPST_StandexMeder_SIL_Form1A" H 6100 4800 50  0001 L CNN
-F 3 "https://standexelectronics.com/de/produkte/ms-reed-relais/" H 5750 4850 50  0001 C CNN
-	1    5750 4850
-	0    1    1    0   
+P 6300 4500
+F 0 "K1" V 6650 4450 50  0000 L CNN
+F 1 "MSxx-1Axx-75" V 6750 4250 50  0000 L CNN
+F 2 "Relay_THT:Relay_SPST_StandexMeder_SIL_Form1A" H 6650 4450 50  0001 L CNN
+F 3 "https://standexelectronics.com/de/produkte/ms-reed-relais/" H 6300 4500 50  0001 C CNN
+	1    6300 4500
+	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0101
@@ -214,12 +214,12 @@ Connection ~ 4850 1450
 $Comp
 L power:GND #PWR0108
 U 1 1 5CFFE5F9
-P 5450 4650
-F 0 "#PWR0108" H 5450 4400 50  0001 C CNN
-F 1 "GND" H 5455 4477 50  0000 C CNN
-F 2 "" H 5450 4650 50  0001 C CNN
-F 3 "" H 5450 4650 50  0001 C CNN
-	1    5450 4650
+P 6500 4800
+F 0 "#PWR0108" H 6500 4550 50  0001 C CNN
+F 1 "GND" H 6505 4627 50  0000 C CNN
+F 2 "" H 6500 4800 50  0001 C CNN
+F 3 "" H 6500 4800 50  0001 C CNN
+	1    6500 4800
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -305,31 +305,21 @@ F 3 "" H 2750 2100 50  0001 C CNN
 	1    2750 2100
 	1    0    0    -1  
 $EndComp
-Text GLabel 6050 5050 2    50   Output ~ 0
-MOTOR_OUT
-Text GLabel 2450 2500 2    50   Output ~ 0
-MOTOR_OUT
 $Comp
 L power:GND #PWR0114
 U 1 1 5D00050E
-P 3100 2300
-F 0 "#PWR0114" H 3100 2050 50  0001 C CNN
-F 1 "GND" H 3105 2127 50  0000 C CNN
-F 2 "" H 3100 2300 50  0001 C CNN
-F 3 "" H 3100 2300 50  0001 C CNN
-	1    3100 2300
+P 3100 2700
+F 0 "#PWR0114" H 3100 2450 50  0001 C CNN
+F 1 "GND" H 3105 2527 50  0000 C CNN
+F 2 "" H 3100 2700 50  0001 C CNN
+F 3 "" H 3100 2700 50  0001 C CNN
+	1    3100 2700
 	1    0    0    -1  
 $EndComp
-Text GLabel 2450 2300 2    50   Output ~ 0
-SENSOR_OUT
 Text GLabel 2450 2400 2    50   Input ~ 0
 SENSOR_IN
 Wire Wire Line
 	2450 2100 2750 2100
-Text GLabel 6650 4650 2    50   Input ~ 0
-SCK
-Text GLabel 6350 2550 2    50   Input ~ 0
-SENSOR_IN
 Wire Wire Line
 	5000 2550 5100 2550
 Wire Wire Line
@@ -352,8 +342,6 @@ MOTOR_IN
 Wire Wire Line
 	2450 2200 3100 2200
 Wire Wire Line
-	3100 2200 3100 2300
-Wire Wire Line
 	5000 2450 5050 2450
 Wire Wire Line
 	5050 2450 5050 2350
@@ -364,99 +352,17 @@ Wire Wire Line
 Wire Wire Line
 	5050 2250 5050 2350
 Connection ~ 5050 2350
-Text GLabel 3550 3750 2    50   Output ~ 0
-MOTOR_OUT
-$Comp
-L power:GND #PWR0113
-U 1 1 5D1F994C
-P 3450 3800
-F 0 "#PWR0113" H 3450 3550 50  0001 C CNN
-F 1 "GND" H 3455 3627 50  0000 C CNN
-F 2 "" H 3450 3800 50  0001 C CNN
-F 3 "" H 3450 3800 50  0001 C CNN
-	1    3450 3800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3450 3750 3550 3750
-Text GLabel 3550 3600 2    50   Output ~ 0
-SENSOR_OUT
-Wire Wire Line
-	3550 3600 3450 3600
-Wire Wire Line
-	3450 3600 3450 3750
-Connection ~ 3450 3750
-Wire Wire Line
-	3450 3750 3450 3800
-$Comp
-L Relay:DIPxx-1Cxx-51x K2
-U 1 1 5D1FA5BE
-P 3450 4750
-F 0 "K2" V 2883 4750 50  0000 C CNN
-F 1 "DIPxx-1Cxx-51x" V 2974 4750 50  0000 C CNN
-F 2 "trr-relay:TRR-RELAY-SMDIP-14_W7.62mm" H 3900 4700 50  0001 L CNN
-F 3 "https://standexelectronics.com/wp-content/uploads/datasheet_reed_relay_DIP.pdf" H 3450 4750 50  0001 C CNN
-	1    3450 4750
-	0    1    1    0   
-$EndComp
-Text GLabel 3750 4850 2    50   Input ~ 0
-SENSOR_IN
-Text GLabel 3150 4950 0    50   Input ~ 0
-MOTOR_IN
-$Comp
-L Device:R R5
-U 1 1 5D1FAE17
-P 3900 4550
-F 0 "R5" V 3700 4500 50  0000 L CNN
-F 1 "220" V 3800 4500 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3830 4550 50  0001 C CNN
-F 3 "~" H 3900 4550 50  0001 C CNN
-	1    3900 4550
-	0    1    1    0   
-$EndComp
-$Comp
-L power:GND #PWR0115
-U 1 1 5D1FB4BA
-P 3150 4550
-F 0 "#PWR0115" H 3150 4300 50  0001 C CNN
-F 1 "GND" H 3155 4377 50  0000 C CNN
-F 2 "" H 3150 4550 50  0001 C CNN
-F 3 "" H 3150 4550 50  0001 C CNN
-	1    3150 4550
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+5V #PWR0116
-U 1 1 5D1FB4E1
-P 4050 4550
-F 0 "#PWR0116" H 4050 4400 50  0001 C CNN
-F 1 "+5V" H 4065 4723 50  0000 C CNN
-F 2 "" H 4050 4550 50  0001 C CNN
-F 3 "" H 4050 4550 50  0001 C CNN
-	1    4050 4550
-	1    0    0    -1  
-$EndComp
 $Comp
 L Device:LED D3
 U 1 1 5D1FCA35
-P 6500 4650
-F 0 "D3" H 6500 4450 50  0000 C CNN
-F 1 "OUT" H 6500 4550 50  0000 C CNN
-F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 6500 4650 50  0001 C CNN
-F 3 "~" H 6500 4650 50  0001 C CNN
-	1    6500 4650
-	1    0    0    1   
+P 5350 5000
+F 0 "D3" H 5350 4800 50  0000 C CNN
+F 1 "OUT" H 5350 4900 50  0000 C CNN
+F 2 "LED_SMD:LED_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 5350 5000 50  0001 C CNN
+F 3 "~" H 5350 5000 50  0001 C CNN
+	1    5350 5000
+	-1   0    0    -1  
 $EndComp
-Wire Wire Line
-	5600 4300 5450 4300
-Wire Wire Line
-	5450 4300 5450 4650
-Connection ~ 5450 4650
-Wire Wire Line
-	5900 4300 6050 4300
-Wire Wire Line
-	6050 4300 6050 4650
-Connection ~ 6050 4650
 $Comp
 L Device:LED D2
 U 1 1 5D20691B
@@ -490,8 +396,6 @@ F 3 "" H 6200 2250 50  0001 C CNN
 	1    6200 2250
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	6350 2550 6200 2550
 Connection ~ 5100 2550
 Connection ~ 6200 2550
 Wire Wire Line
@@ -531,7 +435,7 @@ F 3 "" H 5850 3150 50  0001 C CNN
 $EndComp
 Text GLabel 5500 2250 2    50   Input ~ 0
 MOTOR_TTL
-Text GLabel 5450 5050 0    50   Input ~ 0
+Text GLabel 6550 4100 2    50   Input ~ 0
 MOTOR_DRY
 Wire Wire Line
 	5550 2750 5400 2750
@@ -551,18 +455,122 @@ Wire Wire Line
 $Comp
 L Device:Jumper_NC_Dual JP1
 U 1 1 5D20A5FA
-P 4400 5050
-F 0 "JP1" V 4400 5151 50  0000 L CNN
-F 1 "Jumper_NC_Dual" V 4445 5151 50  0001 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 4400 5050 50  0001 C CNN
-F 3 "~" H 4400 5050 50  0001 C CNN
-	1    4400 5050
+P 4400 5000
+F 0 "JP1" V 4400 5101 50  0000 L CNN
+F 1 "Jumper_NC_Dual" V 4445 5101 50  0001 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 4400 5000 50  0001 C CNN
+F 3 "~" H 4400 5000 50  0001 C CNN
+	1    4400 5000
 	0    1    1    0   
 $EndComp
-Text GLabel 4400 4800 2    50   Input ~ 0
+Text GLabel 4400 4750 2    50   Input ~ 0
 MOTOR_DRY
-Text GLabel 4400 5300 2    50   Input ~ 0
+Text GLabel 4400 5250 2    50   Input ~ 0
 MOTOR_TTL
+$Comp
+L relay_omron_g6k-2:G6K-2 K2
+U 1 1 5D3F7A92
+P 3500 4900
+F 0 "K2" V 2733 4900 50  0000 C CNN
+F 1 "G6K-2" V 2824 4900 50  0000 C CNN
+F 2 "Relay_SMD:Relay_DPDT_Omron_G6K-2F-Y" H 4150 4850 50  0001 L CNN
+F 3 "http://omronfs.omron.com/en_US/ecb/products/pdf/en-g6k.pdf" H 3300 4900 50  0001 C CNN
+	1    3500 4900
+	0    1    1    0   
+$EndComp
+Text GLabel 3200 4900 0    50   Input ~ 0
+MOTOR_IN
+Text GLabel 3800 4800 2    50   Input ~ 0
+SENSOR_IN
+Text GLabel 3200 5300 0    50   Input ~ 0
+SENSOR_IN
+Text GLabel 3800 5400 2    50   Input ~ 0
+MISO
+Text GLabel 3800 5200 2    50   Input ~ 0
+MOTOR_IN
+$Comp
+L power:GND #PWR0113
+U 1 1 5D3F7DCA
+P 3200 4500
+F 0 "#PWR0113" H 3200 4250 50  0001 C CNN
+F 1 "GND" H 3205 4327 50  0000 C CNN
+F 2 "" H 3200 4500 50  0001 C CNN
+F 3 "" H 3200 4500 50  0001 C CNN
+	1    3200 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0115
+U 1 1 5D3F7E4A
+P 3800 4500
+F 0 "#PWR0115" H 3800 4350 50  0001 C CNN
+F 1 "+5V" H 3815 4673 50  0000 C CNN
+F 2 "" H 3800 4500 50  0001 C CNN
+F 3 "" H 3800 4500 50  0001 C CNN
+	1    3800 4500
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
-	3750 5050 4300 5050
+	3800 5000 4300 5000
+$Comp
+L Transistor_BJT:BC817 Q1
+U 1 1 5D3F9D7A
+P 6000 5000
+F 0 "Q1" H 6191 5046 50  0000 L CNN
+F 1 "S8050" H 6191 4955 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23" H 6200 4925 50  0001 L CIN
+F 3 "http://www.unisonic.com.tw/datasheet/S8050.pdf" H 6000 5000 50  0001 L CNN
+	1    6000 5000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0116
+U 1 1 5D3F9DE7
+P 6100 4200
+F 0 "#PWR0116" H 6100 4050 50  0001 C CNN
+F 1 "+5V" H 6115 4373 50  0000 C CNN
+F 2 "" H 6100 4200 50  0001 C CNN
+F 3 "" H 6100 4200 50  0001 C CNN
+	1    6100 4200
+	1    0    0    -1  
+$EndComp
+Text GLabel 5200 5000 0    50   Input ~ 0
+SCK
+$Comp
+L power:GND #PWR0119
+U 1 1 5D3FB8A4
+P 6100 5200
+F 0 "#PWR0119" H 6100 4950 50  0001 C CNN
+F 1 "GND" H 6105 5027 50  0000 C CNN
+F 2 "" H 6100 5200 50  0001 C CNN
+F 3 "" H 6100 5200 50  0001 C CNN
+	1    6100 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5750 4350 5750 4200
+Wire Wire Line
+	5750 4200 6100 4200
+Wire Wire Line
+	5750 4650 5750 4800
+Wire Wire Line
+	5750 4800 6100 4800
+Wire Wire Line
+	6500 4200 6500 4100
+Wire Wire Line
+	6500 4100 6550 4100
+Wire Wire Line
+	2450 2300 3100 2300
+Wire Wire Line
+	3100 2200 3100 2300
+Connection ~ 3100 2300
+Wire Wire Line
+	3100 2300 3100 2500
+Wire Wire Line
+	2450 2500 3100 2500
+Connection ~ 3100 2500
+Wire Wire Line
+	3100 2500 3100 2700
+Connection ~ 6100 4800
+Connection ~ 6100 4200
 $EndSCHEMATC

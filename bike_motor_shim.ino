@@ -20,7 +20,7 @@
 
 #include "debug.h"
 
-#define MAX_SPEED_KM_H        24
+#define MAX_SPEED_KM_H        10
 #define WHEEL_SIZE_INCH       27.5
 
 #define MAX_SPEED_MM_S        ( MAX_SPEED_KM_H * 1000 / 3.6 )
@@ -36,7 +36,10 @@ struct {
     using sensor_int = artl::pin_change_int<sensor_in::pin>;
 
     unsigned long on_ms = 0;
-    unsigned long pulse_ms = 0;
+    unsigned long pulse_ms = 1;
+    unsigned long fixed_pulse_ms = 1;
+    unsigned long period_ms = min_period_ms;
+    unsigned long fixed_period_ms = min_period_ms;
 
     bool state = false;
     bool pulse = false;
@@ -66,6 +69,12 @@ struct {
         if (state) {
             pulse = true;
 
+            period_ms = t - on_ms;
+            if (period_ms < min_period_ms) {
+                fixed_period_ms = 10 * period_ms * min_period_ms / (9 * period_ms + min_period_ms);
+            } else {
+                fixed_period_ms = period_ms;
+            }
             on_ms = t;
         } else {
             if (t - on_ms > pulse_ms) {
@@ -74,6 +83,7 @@ struct {
             if (pulse_ms == 0) {
                 pulse_ms = 1;
             }
+            fixed_pulse_ms = fixed_period_ms * pulse_ms / period_ms;
         }
     }
 } sensor;
@@ -93,14 +103,19 @@ struct {
     }
 
     void update(unsigned long t) {
-        if (!state && (sensor.state || (sensor.pulse && sensor.pulse_ms)) && t - on_ms >= min_period_ms) {
+        if (!state &&
+            (sensor.state || (sensor.pulse && sensor.fixed_pulse_ms)) &&
+            t - on_ms >= sensor.fixed_period_ms)
+        {
             on(t);
             sensor.pulse = false;
         }
 
-        if (state && sensor.pulse_ms && t - on_ms >= sensor.pulse_ms) {
+        if (state && sensor.fixed_pulse_ms &&
+            t - on_ms >= sensor.fixed_pulse_ms)
+        {
             off();
-            sensor.pulse_ms = 0;
+            sensor.fixed_pulse_ms = 0;
         }
     }
 

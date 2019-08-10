@@ -1,0 +1,3 @@
+(sym_lib_table
+  (lib (name relay_omron_g6k-2)(type Legacy)(uri /Volumes/data/home/max_romanov/Documents/Arduino/bike_motor_shim/kicad/relay_omron_g6k-2.lib)(options "")(descr ""))
+)

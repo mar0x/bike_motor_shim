@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP G6K-2
+D Miniature 2-pole relay, Single-side Stable
+K Miniature Relay Dual Pole DPDT Omron
+F http://omronfs.omron.com/en_US/ecb/products/pdf/en-g6k.pdf
+$ENDCMP
+#
+#End Doc Library
