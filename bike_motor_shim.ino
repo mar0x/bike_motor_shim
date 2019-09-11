@@ -20,10 +20,10 @@
 
 #include "debug.h"
 
-#define MAX_SPEED_KM_H        10
+#define MAX_SPEED_KM_H        20
 #define WHEEL_SIZE_INCH       27.5
 
-#define MAX_SPEED_MM_S        ( MAX_SPEED_KM_H * 1000 / 3.6 )
+#define MAX_SPEED_MM_S        ( ((unsigned long) MAX_SPEED_KM_H) * 1000 / 3.6 )
 #define WHEEL_SIZE_MM         ( WHEEL_SIZE_INCH * 25.4 )
 #define WHEEL_CIRC_MM         ( WHEEL_SIZE_MM * 3.14159265358 )
 #define MAX_PULSE_FREQ        ( MAX_SPEED_MM_S / WHEEL_CIRC_MM )
@@ -44,7 +44,12 @@ struct {
     bool state = false;
     bool pulse = false;
 
-    artl::button<> debouncer;
+    struct debouncer_traits {
+        unsigned long bounce() const { return 2; }
+        unsigned long hold() const { return 500; }
+    };
+
+    artl::button<artl::default_button_handler, debouncer_traits> debouncer;
 
     void setup() {
         sensor_in().setup();
@@ -76,6 +81,7 @@ struct {
                 fixed_period_ms = period_ms;
             }
             on_ms = t;
+            pulse_ms = 1;
         } else {
             if (t - on_ms > pulse_ms) {
                 pulse_ms = t - on_ms;
